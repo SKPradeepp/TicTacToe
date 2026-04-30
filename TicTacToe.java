@@ -1,41 +1,45 @@
+import java.util.Random;
+
 public class TicTacToe {
 
-    static char[][] board = new char[3][3];
+    // Game state variables
+    static char userSymbol;
+    static char computerSymbol;
+    static boolean isUserTurn;
 
     /**
-     * Entry point of the program. It initializes the board and prints
-     * the empty grid on the console.
+     * Entry point of the program.
+     * Performs toss and assigns symbols.
      */
     public static void main(String[] args) {
-        initializeBoard();
-        printBoard();
+        tossToDecideTurn();
     }
 
     /**
-     * Initializes the 3x3 board by filling each cell with '-' to indicate
-     * an empty position. Students should focus on correct nested loop usage.
+     * UC2: Toss to decide first player and assign symbols
      */
-    static void initializeBoard() {
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                board[row][col] = '-';
-            }
-        }
-    }
+    static void tossToDecideTurn() {
+        Random rand = new Random();
 
-    /**
-     * Prints the Tic-Tac-Toe board using horizontal and vertical separators
-     * so that the grid structure is clearly visible to the user.
-     */
-    static void printBoard() {
-        System.out.println("-------------------");
-        for (int row = 0; row < 3; row++) {
-            System.out.print("| ");
-            for (int col = 0; col < 3; col++) {
-                System.out.print(board[row][col] + " | ");
-            }
-            System.out.println();
-            System.out.println("-------------------");
+        // Randomly decide who starts
+        isUserTurn = rand.nextBoolean();
+
+        if (isUserTurn) {
+            userSymbol = 'X';
+            computerSymbol = 'O';
+            System.out.println("Toss Result: User plays first!");
+        } else {
+            userSymbol = 'O';
+            computerSymbol = 'X';
+            System.out.println("Toss Result: Computer plays first!");
         }
+
+        // Display assigned symbols
+        System.out.println("User Symbol: " + userSymbol);
+        System.out.println("Computer Symbol: " + computerSymbol);
+
+        // Store current player info
+        char currentSymbol = isUserTurn ? userSymbol : computerSymbol;
+        System.out.println("Current Turn Symbol: " + currentSymbol);
     }
 }
