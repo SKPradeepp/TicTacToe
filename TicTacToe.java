@@ -8,31 +8,33 @@ public class TicTacToe {
 
     public static void main(String[] args) {
 
-        int row = 1;  // example
-        int col = 1;  // example
+        int row = 1;   // example position
+        int col = 1;
+        char symbol = 'X';
 
-        if (isValidMove(row, col)) {
-            System.out.println("Move is valid!");
-        } else {
-            System.out.println("Invalid move. Try again.");
-        }
+        placeMove(row, col, symbol);
+        printBoard();
     }
 
     /**
-     * UC5: Validates whether the move is within bounds and cell is empty
+     * UC6: Places the given symbol on the board
      */
-    static boolean isValidMove(int row, int col) {
+    static void placeMove(int row, int col, char symbol) {
+        board[row][col] = symbol;
+    }
 
-        // Check bounds (0–2)
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
+    /**
+     * Utility method to print board
+     */
+    static void printBoard() {
+        System.out.println("-------------------");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " | ");
+            }
+            System.out.println();
+            System.out.println("-------------------");
         }
-
-        // Check if cell is empty
-        if (board[row][col] != '-') {
-            return false;
-        }
-
-        return true;
     }
 }
