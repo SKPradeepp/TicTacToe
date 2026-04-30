@@ -1,45 +1,27 @@
-import java.util.Random;
+import java.util.Scanner;
 
 public class TicTacToe {
 
-    // Game state variables
-    static char userSymbol;
-    static char computerSymbol;
-    static boolean isUserTurn;
-
     /**
      * Entry point of the program.
-     * Performs toss and assigns symbols.
+     * Calls method to take user input.
      */
     public static void main(String[] args) {
-        tossToDecideTurn();
+        int slot = getUserSlot();
+        System.out.println("User selected slot: " + slot);
     }
 
     /**
-     * UC2: Toss to decide first player and assign symbols
+     * UC3: Accepts user slot input (1–9)
+     * Returns the selected slot number
      */
-    static void tossToDecideTurn() {
-        Random rand = new Random();
+    static int getUserSlot() {
+        Scanner scanner = new Scanner(System.in);
+        int slot;
 
-        // Randomly decide who starts
-        isUserTurn = rand.nextBoolean();
+        System.out.print("Enter a slot number (1-9): ");
+        slot = scanner.nextInt();
 
-        if (isUserTurn) {
-            userSymbol = 'X';
-            computerSymbol = 'O';
-            System.out.println("Toss Result: User plays first!");
-        } else {
-            userSymbol = 'O';
-            computerSymbol = 'X';
-            System.out.println("Toss Result: Computer plays first!");
-        }
-
-        // Display assigned symbols
-        System.out.println("User Symbol: " + userSymbol);
-        System.out.println("Computer Symbol: " + computerSymbol);
-
-        // Store current player info
-        char currentSymbol = isUserTurn ? userSymbol : computerSymbol;
-        System.out.println("Current Turn Symbol: " + currentSymbol);
+        return slot;
     }
 }
