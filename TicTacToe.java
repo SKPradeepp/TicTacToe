@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class TicTacToe {
 
     static char[][] board = {
@@ -6,32 +8,34 @@ public class TicTacToe {
         {'-', '-', '-'}
     };
 
-    /**
-     * Entry point of the program.
-     * Places a move and prints the updated board.
-     */
     public static void main(String[] args) {
 
-        int row = 1;
-        int col = 1;
-        char symbol = 'X';
-
-        placeMove(row, col, symbol);
+        computerMove('O');
 
         printBoard();
     }
 
-    /**
-     * UC6: Places the given symbol on the board
-     */
-    static void placeMove(int row, int col, char symbol) {
-        board[row][col] = symbol;
+    static void computerMove(char symbol) {
+
+        Random random = new Random();
+
+        while (true) {
+
+            int slot = random.nextInt(9) + 1;
+
+            int row = (slot - 1) / 3;
+            int col = (slot - 1) % 3;
+
+            if (board[row][col] == '-') {
+                board[row][col] = symbol;
+                System.out.println("Computer selected slot: " + slot);
+                break;
+            }
+        }
     }
 
-    /**
-     * Prints the Tic-Tac-Toe board
-     */
     static void printBoard() {
+
         System.out.println("-------------------");
 
         for (int row = 0; row < 3; row++) {
