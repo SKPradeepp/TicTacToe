@@ -6,13 +6,18 @@ public class TicTacToe {
         {'-', '-', '-'}
     };
 
+    /**
+     * Entry point of the program.
+     * Places a move and prints the updated board.
+     */
     public static void main(String[] args) {
 
-        int row = 1;   // example position
+        int row = 1;
         int col = 1;
         char symbol = 'X';
 
         placeMove(row, col, symbol);
+
         printBoard();
     }
 
@@ -24,15 +29,19 @@ public class TicTacToe {
     }
 
     /**
-     * Utility method to print board
+     * Prints the Tic-Tac-Toe board
      */
     static void printBoard() {
         System.out.println("-------------------");
-        for (int i = 0; i < 3; i++) {
+
+        for (int row = 0; row < 3; row++) {
+
             System.out.print("| ");
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " | ");
+
+            for (int col = 0; col < 3; col++) {
+                System.out.print(board[row][col] + " | ");
             }
+
             System.out.println();
             System.out.println("-------------------");
         }
